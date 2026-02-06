@@ -67,6 +67,18 @@ fun HereAppNavigation(
             HomeScreen(
                 defaultMessage = defaultMessage,
                 defaultContact = defaultContact,
+                messages = messages,
+                contacts = contacts,
+                onSelectMessage = { id ->
+                    scope.launch {
+                        preferencesManager.setDefaultMessageId(id)
+                    }
+                },
+                onSelectContact = { id ->
+                    scope.launch {
+                        preferencesManager.setDefaultContactId(id)
+                    }
+                },
                 onNavigateToMessages = { navController.navigate("messages") },
                 onNavigateToContacts = { navController.navigate("contacts") }
             )
